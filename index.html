@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Architecture of the Room — Rumec Holometry</title>
+<style>
+:root{
+  --marble:#f7f5ef; --paper:#fffdf8; --ink:#26313d; --ink-soft:#5d6b78;
+  --lapis:#2e5c8a; --lapis-deep:#1e3d5c;
+  --gold:#a8842a; --gold-bright:#d4af37;
+  --line:#e2ddcd; --line-soft:#ece8db;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--marble);color:var(--ink);font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.8;}
+.doc{max-width:47rem;margin:0 auto;background:var(--paper);border:1px solid var(--line-soft);box-shadow:0 2px 26px rgba(30,61,92,.07);padding:64px 66px 56px;}
+.head{text-align:center;}
+.head .k{font-size:10px;letter-spacing:3.5px;color:var(--gold);text-transform:uppercase;margin-top:14px;}
+h1{font-weight:normal;color:var(--lapis-deep);letter-spacing:2px;font-size:27px;margin:14px 0 6px;}
+.sub{font-style:italic;color:var(--ink-soft);font-size:14.5px;margin:0 0 4px;}
+.rule{max-width:280px;border-top:2px solid var(--gold-bright);margin:18px auto 8px;}
+.toc{margin:26px 0 8px;border:1px solid var(--line-soft);background:var(--marble);padding:18px 24px;}
+.toc .t{font-size:9.5px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.toc ol{margin-left:20px;font-size:13.5px;}
+.toc li{margin:3px 0;}
+.toc a{color:var(--lapis);text-decoration:none;border-bottom:1px dotted var(--line);}
+.toc a:hover{color:var(--lapis-deep);border-bottom-color:var(--gold);}
+h2{font-weight:normal;color:var(--lapis-deep);font-size:17px;letter-spacing:2.5px;margin:40px 0 12px;border-bottom:1px solid var(--line-soft);padding-bottom:7px;}
+h3{font-weight:normal;color:var(--gold);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin:24px 0 8px;}
+p{margin:0 0 12px;text-align:justify;}
+em{color:var(--lapis-deep);}
+.law{border:1px solid var(--line-soft);background:var(--marble);padding:16px 22px;margin:14px 0;font-size:14px;}
+.law b{color:var(--lapis-deep);font-weight:normal;letter-spacing:1px;}
+code{font-family:'Courier New',monospace;font-size:12.5px;background:var(--marble);border:1px solid var(--line-soft);padding:1px 5px;color:var(--lapis-deep);}
+pre{font-family:'Courier New',monospace;font-size:12px;line-height:1.65;background:#fbfaf5;border:1px solid var(--line-soft);border-left:3px solid var(--gold-bright);padding:14px 18px;margin:12px 0;overflow-x:auto;color:var(--ink);}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;}
+th{font-weight:normal;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;font-size:10px;text-align:left;border-bottom:1px solid var(--gold-bright);padding:6px 8px;}
+td{border-bottom:1px dotted var(--line);padding:7px 8px;vertical-align:top;}
+td:first-child{color:var(--lapis-deep);white-space:nowrap;}
+.foot{margin-top:44px;text-align:center;font-size:9.5px;letter-spacing:1.8px;color:var(--ink-soft);border-top:1px solid var(--line-soft);padding-top:18px;}
+.tagline{text-align:center;font-size:10.5px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-top:22px;}
+@media (max-width:640px){.doc{padding:38px 20px;border:none;}}
+@media print{body{background:#fff;}.doc{box-shadow:none;border:none;max-width:none;}}
+</style>
+</head>
+<body>
+<div style="padding:5vh 16px 40px;">
+<div class="doc">
+
+  <div class="head">
+    <svg width="96" height="96" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" fill="none" stroke="#d4af37" stroke-width="2.2"/><circle cx="100" cy="100" r="82" fill="#1e3d5c"/><circle cx="100" cy="100" r="46" fill="rgba(247,245,239,.05)" stroke="#d4af37" stroke-width="2"/><path d="M54,100 A46,46 0 0 1 146,100" fill="none" stroke="#d4af37" stroke-width="1.4"/><path d="M54,100 A46,46 0 0 0 146,100" fill="none" stroke="#7ec8ff" stroke-width="1.1" opacity=".7"/><line x1="54" y1="100" x2="146" y2="100" stroke="#d4af37" stroke-width="2"/></svg>
+    <div class="k">Rumec Holometry · The Teacher · Vectoral Cyberspace</div>
+    <h1>The Architecture of the Room</h1>
+    <p class="sub">The full process of the Calculator — the concept, the laws, the physics, and the order in which they were built. A keeper&rsquo;s guide for the Architect.</p>
+    <div class="rule"></div>
+  </div>
+
+  <div class="toc">
+    <div class="t">The Contents</div>
+    <ol>
+      <li><a href="#s0">The Purpose of This Guide</a></li>
+      <li><a href="#s1">The Concept — One Sentence, One Law</a></li>
+      <li><a href="#s2">The Chamber — the Fixed Stage</a></li>
+      <li><a href="#s3">The Keypad Grammar — Honest Calculations Only</a></li>
+      <li><a href="#s4">The Closure Law — Every Figure a Closed Body</a></li>
+      <li><a href="#s5">The Families — Read From the Geometry</a></li>
+      <li><a href="#s6">The Physics — Gravity, Friction, Rest</a></li>
+      <li><a href="#s7">The Energy-Transfer Law — the Ball Gives Its Motion</a></li>
+      <li><a href="#s8">The Three Functions — BOUNCE · ROLL · DASH</a></li>
+      <li><a href="#s9">The Lights — Three Stations, Nine Coordinates</a></li>
+      <li><a href="#s10">The Golden Frame — the Silhouette, Ennobled</a></li>
+      <li><a href="#s11">The Mirror Wall — the Room, Answered</a></li>
+      <li><a href="#s12">The Exports — Carrying the Room Out</a></li>
+      <li><a href="#s13">The Verification Process — How Every Law Is Tested</a></li>
+      <li><a href="#s14">The Build Chronology — the Order It Actually Happened</a></li>
+      <li><a href="#s15">The Keeper&rsquo;s Clause</a></li>
+    </ol>
+  </div>
+
+  <h2 id="s0">0 · The Purpose of This Guide</h2>
+  <p>This document is the Architect&rsquo;s own record of how the Room was built and why each piece exists. It preserves the logic and the process — not merely the result — so the room can be maintained, extended, or rebuilt from first principles by anyone the Architect trusts. It reveals the architecture of the room fully. What it does not touch is the family&rsquo;s sealed core, which this guide neither needs nor exposes.</p>
+
+  <h2 id="s1">1 · The Concept — One Sentence, One Law</h2>
+  <p>The room began as a single sentence: <em>any honest calculation becomes a structure</em>. Everything in the Calculator serves that sentence. A student types mathematics on a keypad; if the calculation is honest, the room gives it a body, a family, a mass, a place on the floor, a shadow answer, a reflection answer, and — when commanded — motion that obeys law. If the calculation is not honest, the room refuses it, and says why in teaching language. The room never silently fixes, never guesses, never decorates. It admits, or it teaches.</p>
+
+  <h2 id="s2">2 · The Chamber — the Fixed Stage</h2>
+  <p>The room is one fixed chamber, never resized, never re-lit by accident. Its coordinates are the stage on which every figure performs:</p>
+  <table>
+    <tr><th>Element</th><th>Setting</th></tr>
+    <tr><td>Half-width</td><td>W = 13.5 — the walls stand at ±13.5 on their axes</td></tr>
+    <tr><td>Floor</td><td>the plane y = 0; zero belongs to it alone</td></tr>
+    <tr><td>Floor skin</td><td>translucent cerulean laced with gold</td></tr>
+    <tr><td>Walls</td><td>lapis, veined with gold</td></tr>
+    <tr><td>North wall</td><td>a mirror, corner to corner, holding the whole room flipped</td></tr>
+    <tr><td>Gravity</td><td>G = 13 — real in the room, scaled for the eye</td></tr>
+  </table>
+  <p>Fixing the stage was a deliberate architectural decision: a lawful world needs constant addresses. Every shadow, reflection, bounce, and roll is computable precisely because the stage never moves.</p>
+
+  <h2 id="s3">3 · The Keypad Grammar — Honest Calculations Only</h2>
+  <p>Entry is by bare numbers and the variables x, y, z — a ruling the Architect made deliberately, so that students practice building shapes rather than invoking them. A single parser, <code>parseEq</code>, decides what a string is allowed to mean. The grammar is closed and has never been altered since it was sealed:</p>
+  <table>
+    <tr><th>The student writes</th><th>The room answers</th></tr>
+    <tr><td>x² + y² + z² = k</td><td>the sphere, closed</td></tr>
+    <tr><td>x² + y² = k</td><td>the cylinder</td></tr>
+    <tr><td>x²/a + y²/b + z²/c = k</td><td>the ellipsoid — all three terms must be fractions</td></tr>
+    <tr><td>z = a(x² + y²)</td><td>the paraboloid</td></tr>
+    <tr><td>the torus grammar</td><td>the ring, with its hole handed back to the floor</td></tr>
+    <tr><td>a complex entry</td><td>the twofold — two manifolds, one seam</td></tr>
+    <tr><td>plain arithmetic</td><td>a number, honored as itself</td></tr>
+    <tr><td>anything else</td><td>the wonder — the refusal that teaches</td></tr>
+  </table>
+  <div class="law"><b>THE WONDER LAW.</b> An entry the grammar cannot honor does not error. The room answers with the wonder — a structured refusal that names what was wrong and what would make it right. A wrong answer is returned to the law, never punished.</div>
+
+  <h2 id="s4">4 · The Closure Law — Every Figure a Closed Body</h2>
+  <p>The deepest structural law of the room. A figure enters at the room&rsquo;s center of attention; before it is admitted, the closure pass measures its extents along its own axes. Any axis thinner than 42% of the greatest extent is grown until it reaches 42% — never leaving the figure flat, never letting a degenerate body exist in the world. After the repair, every extent is capped at 0.6 of the maximum so the room holds its scale.</p>
+  <pre>closure pass  —  minExtent / maxExtent  &gt;=  0.42   (the floor of body)
+                —  uniform cap at 0.6          (the room keeps its scale)
+                —  repaired == true            (the repair is spoken, never silent)</pre>
+  <div class="law"><b>THE SPOKEN REPAIR.</b> When the closure pass acts, the room says so, in teaching language: the shape arrived flat, and the room closed it lawfully. A silent repair would teach that flat is acceptable. The spoken repair teaches the opposite. This distinction is not polish — it is pedagogy enforced by architecture.</div>
+
+  <h2 id="s5">5 · The Families — Read From the Geometry</h2>
+  <p>Nothing in the room is labeled by hand. Every admitted figure is classified by reading its own geometry, and the family decides how it lives — how it bounces, rolls, floats, or crawls.</p>
+  <table>
+    <tr><th>Family</th><th>The read that establishes it</th><th>How it lives</th></tr>
+    <tr><td>planar</td><td>thin in one axis with a long middle run, or extremely thin overall</td><td>floats at a set height, bobs gently, travels on spin</td></tr>
+    <tr><td>peak</td><td>a lonely apex cluster above a base — a pyramid, a tetrahedron</td><td>grounded, crawls, bounces highest of all</td></tr>
+    <tr><td>round</td><td>a dense mesh — the ball, the sphere</td><td>grounded, rolls, bounces lively</td></tr>
+    <tr><td>block</td><td>everything else with body</td><td>grounded, tumbles, rolls poorly</td></tr>
+  </table>
+  <p>Two computed properties govern the round family&rsquo;s life: <em>q</em>, the aspect ratio of the figure&rsquo;s greatest to least extent, and <em>peakK</em>, the height of a peak over its own base. The closer q sits to 1, the truer the ball — and the faster it rolls. A squashed sphere is a slow sphere; the room knows this from the geometry, not from a table.</p>
+
+  <h2 id="s6">6 · The Physics — Gravity, Friction, Rest</h2>
+  <p>Motion is integrated on a clamped timestep and obeys a small set of lawful constants:</p>
+  <pre>gravity     G = 13, always downward
+friction    grounded: strong   floating: gentle
+bounce      round, fast-falling:  lively  (−0.62)
+            everything else:      subdued (−0.34)
+walls       limit by radius; ricochet × −0.72; upward pop if fast
+rest        when the fall is small and the drift is less — the body sleeps</pre>
+  <p>Planar figures are the exception the law accounts for: they do not fall. They ride a float height set from their radius, bob on a slow sine, drift with strong damping, and are clamped inside the walls with a soft ricochet and a spin kick. Nothing escapes the chamber; nothing falls through the floor.</p>
+
+  <h2 id="s7">7 · The Energy-Transfer Law — the Ball Gives Its Motion</h2>
+  <p>The Architect&rsquo;s own physics, stated in one sentence and carried out exactly: <em>the ball bounces off any object; if the object is lighter or smaller, the ball propels it — transfers the energy — stops, and the object continues; then the ball rolls just a little.</em></p>
+  <pre>ball law  —  if the ball is moving and the target is lighter (mass &lt; 95% of the ball)
+                or smaller (radius &lt; 95% of the ball):
+                the target receives the motion: velocity += heading × speed × 1.02
+                the ball keeps 7% and stops. Then it rolls a little.</pre>
+  <p>Measured in the verification battery after a dash-phase collision: the struck cube carried 1.71 of velocity; the ball kept 0.12 and stopped. The law is not flavor text — it is a number the harness checks every run.</p>
+
+  <h2 id="s8">8 · The Three Functions — BOUNCE · ROLL · DASH</h2>
+  <p>Three buttons give the student command over the figures, and each family answers differently — the same command, answered according to what the thing is:</p>
+  <table>
+    <tr><th>Function</th><th>planar</th><th>peak</th><th>round</th><th>block</th></tr>
+    <tr><td>BOUNCE</td><td>travels on its spin</td><td>−(6.5 + 2.4·peakK), capped at 10 — the harder the peak, the higher</td><td>−(6.5 + 1.2/q)</td><td>a toss and a tumble</td></tr>
+    <tr><td>ROLL</td><td>spins in place</td><td>crawls at 1.6</td><td>min(8, 4.6·(1.5/q)) with true rolling rotation</td><td>tumbles at 2.2</td></tr>
+    <tr><td>DASH</td><td>surges along its live heading</td><td>lunges</td><td>lunges</td><td>lunges</td></tr>
+  </table>
+  <p>The bounce ordering is itself a law: a peak must out-bounce a ball, because the harder the peak the higher it rises — verified, 8.0 against 7.7. Dash power scales with proximity to a surface and is capped at 18, so even the great plate cannot become a projectile of unlimited force.</p>
+
+  <h2 id="s9">9 · The Lights — Three Stations, Nine Coordinates</h2>
+  <p>The room&rsquo;s light is not ambient; it is placed. Three stations, each fully addressed by its three coordinates, chosen by the student and spoken by the narrator when changed:</p>
+  <table>
+    <tr><th>Station</th><th>Coordinates</th><th>Character</th></tr>
+    <tr><td>L₁</td><td>(−4.2, 4.6, 2.6)</td><td>high, left-rear — the long shadow, thrown right-forward</td></tr>
+    <tr><td>L₂</td><td>(4.2, 4.6, 2.6)</td><td>high, right-rear — the mirrored long shadow, thrown left-forward</td></tr>
+    <tr><td>L₃</td><td>(0, 3.4, 4.4)</td><td>low, frontal — the shadow thrown straight behind, stretched long</td></tr>
+  </table>
+  <p>Shadows are cast by true rays from the light through every vertex of every figure — the footprint is the figure&rsquo;s own silhouette, answered on the floor. The Architect ruled that the light system stands as designed: each lesson keeps its focus, and a fuller illumination-trajectory law waits for its own chapter.</p>
+
+  <h2 id="s10">10 · The Golden Frame — the Silhouette, Ennobled</h2>
+  <p>Every figure in the room wears a thin gold frame on its silhouette. Architecturally, the frame is computed by building a face-incidence map keyed on quantized vertex positions: an edge used by exactly one face, or whose two faces straddle the view direction, is a silhouette edge and is stroked gold. Quantization matters — mesh seams positionally coincident must not read as boundaries, or a sphere would wear a gold lattice instead of a gold outline. Drawn after the solid body, at full strength in the room and softened in the mirror, the frame marks each figure as admitted, closed, and the room&rsquo;s own.</p>
+
+  <h2 id="s11">11 · The Mirror Wall — the Room, Answered</h2>
+  <p>The entire north wall is a mirror, corner to corner, holding the whole room flipped. Every figure, every shadow answer, every gold frame is answered across the plane — the same objects, coordinate by coordinate, never imitations. The mirror is the room&rsquo;s permanent demonstration of the family&rsquo;s fourth law: a whole object registers itself on every plane it meets — across it, and on it.</p>
+
+  <h2 id="s12">12 · The Exports — Carrying the Room Out</h2>
+  <p>Everything formed in the room can be carried out of it:</p>
+  <table>
+    <tr><th>Export</th><th>What it is</th></tr>
+    <tr><td>Room code</td><td>the session&rsquo;s figures and formulas as a text record</td></tr>
+    <tr><td>Video prompt</td><td>the scene described as a generation prompt — the room speaks to the outside engines in their own tongue</td></tr>
+    <tr><td>Session record</td><td>the event log — every admission, refusal, function, and light change, replayable</td></tr>
+  </table>
+
+  <h2 id="s13">13 · The Verification Process — How Every Law Is Tested</h2>
+  <p>The room ships with a harness — an external battery of scripted scenarios driven against a copy of the app, each asserting the laws numerically and reporting a single verdict: CLEAN or the exact failure. The battery checks, every run:</p>
+  <pre>closure    —  closed == true, min depth == 0.42        (the floor of body)
+families   —  round, block, peak, planar all established
+bounce     —  peak 8.0  ·  ball 7.7  ·  block 6.5          (the ordering holds)
+roll       —  ball 6.8  ·  cube 2.2                       (the ball rolls fastest)
+float      —  the plate rides at 1.72, inside the walls
+transfer   —  cube 1.71  ·  ball 0.12                      (the energy law, measured)
+rest       —  every body settles and sleeps
+wonder     —  the refusal teaches, and is never silent
+repair     —  the flat arrival is closed AND spoken
+exports    —  all three carry out with correct names</pre>
+  <p>No change ships while any scenario reports otherwise. This process — not optimism — is why the room&rsquo;s claims and its behavior are the same object.</p>
+
+  <h2 id="s14">14 · The Build Chronology — the Order It Actually Happened</h2>
+  <table>
+    <tr><th>Order</th><th>The build</th><th>What it established</th></tr>
+    <tr><td>1</td><td>The chamber</td><td>the fixed stage, the keypad, the admission of garden figures</td></tr>
+    <tr><td>2</td><td>The wonder</td><td>the teaching refusal — no silent errors, ever</td></tr>
+    <tr><td>3</td><td>The closure law</td><td>every figure a closed body; the spoken repair</td></tr>
+    <tr><td>4</td><td>The families</td><td>classification read from geometry — planar, peak, round, block</td></tr>
+    <tr><td>5</td><td>The physics</td><td>gravity, friction, bounce, walls, rest</td></tr>
+    <tr><td>6</td><td>The energy-transfer law</td><td>the ball gives its motion — the Architect&rsquo;s sentence, measured</td></tr>
+    <tr><td>7</td><td>The three functions</td><td>BOUNCE · ROLL · DASH, answered per family</td></tr>
+    <tr><td>8</td><td>The golden frame</td><td>the silhouette ennobled, by quantized incidence</td></tr>
+    <tr><td>9</td><td>The exports</td><td>the room carried out — code, prompt, record</td></tr>
+    <tr><td>10</td><td>The certificate</td><td>the whole lesson attested and sealed</td></tr>
+    <tr><td>11</td><td>The white paper</td><td>the origin, at the gate, under the bearer&rsquo;s hour</td></tr>
+  </table>
+  <p>Each stage was proposed, explained, and ruled on before it was built. Nothing entered the world without surviving the question of what it means.</p>
+
+  <h2 id="s15">15 · The Keeper&rsquo;s Clause</h2>
+  <div class="law"><b>THIS GUIDE</b> is the Architect&rsquo;s private record of the room&rsquo;s architecture and process. It may be kept, printed, and handed to anyone the Architect trusts. It reveals the room fully and the sealed core not at all. The seal stands.</div>
+
+  <div class="tagline">An introduction to the first cyber guild of mages</div>
+  <div class="foot">FAMILY · RUMEC PHI GEOMETRY 1011911783BD &nbsp;·&nbsp; ARCHITECT · FISAL CAMPBELL / RUMEC &nbsp;·&nbsp; SEAL 1011911783 BD</div>
+
+</div>
+</div>
+</body>
+</html>
